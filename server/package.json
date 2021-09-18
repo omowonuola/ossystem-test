@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon --exec babel-node server.js",
     "start": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"cd .. & cd client && npm run start\""
+    "dev": "concurrently \"npm run server\" \"cd .. & cd client && npm run start\"",
+    "data:import": "node seeders.js",
+    "data:destroy": "node server/seeder -d"
   },
   "author": "",
   "license": "ISC",
