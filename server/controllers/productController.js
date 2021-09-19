@@ -30,14 +30,23 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route   GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async(req, res) => {
-    const products = await Product.find({})
+    
+    const pageSize = 8;
+	const page = Number(req.query.pageNumber) || 1;
+	const keyword = req.query.keyword
+		? {
+				name: {
+					$regex: req.query.keyword,
+					$options: 'i',
+				},
+		  }
+		: {};
 
-    if (products) {
-        res.json(products)  
-    } else {
-        res.status(404)
-        throw new Error('Products not found')
-    }
+	const count = await Product.countDocuments({ ...keyword });
+	const products = await Product.find({ ...keyword })
+		.limit(pageSize)
+		.skip(pageSize * (page - 1));
+	res.json({ products, page, pages: Math.ceil(count / pageSize) });
 })
 
 
