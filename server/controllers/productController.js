@@ -1,18 +1,25 @@
 import asyncHandler from 'express-async-handler'
 import Product from '../models/productModel.js'
+import cloudinary from '../utilis/cloudinary.js'
+// import upload from '../utilis/multer.js'
 
 
 // @desc 		Create a Product
 // @route 		POST /api/v1/products
 // @access 		Private/admin
 const createProduct = asyncHandler(async (req, res) => {
+    const uploadimage = await cloudinary.uploader.upload(req.file.path);
+    
+    console.log(uploadimage, 'lolly')
+
 	const product = new Product({
 		title: req.body.title,
 		user: req.user._id,
-		image: req.file.image,
+		image: uploadimage.secure_url,
 		category: req.body.category,
 		description: req.body.description,
 	});
+    console.log(product, 'killer')
 	const createdProduct = await product.save();
 
     if (createdProduct) {
@@ -30,7 +37,7 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route   GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async(req, res) => {
-    
+
     const pageSize = 8;
 	const page = Number(req.query.pageNumber) || 1;
 	const keyword = req.query.keyword

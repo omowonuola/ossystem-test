@@ -9,12 +9,13 @@ import {
 } from '../controllers/productController.js'
 
 import { protect, admin } from '../middleware/authMiddleware.js'
+import upload from '../utilis/multer.js'
 
 
 router
     .route('/')
     .get(getProducts)
-    .post(protect, admin, createProduct);
+router.route('/uploads').post(protect, upload.single('image'), admin, createProduct);
 router
     .route('/:id')
     .get(getProductById)
