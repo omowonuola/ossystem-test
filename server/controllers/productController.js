@@ -4,6 +4,16 @@ import cloudinary from '../utilis/cloudinary.js'
 // import upload from '../utilis/multer.js'
 
 
+/**
+ * @swagger
+ * tags:
+ *  name: Products
+ *  description: Product Routes
+ * 
+*/
+
+
+
 // @desc 		Create a Product
 // @route 		POST /api/v1/products
 // @access 		Private/admin
