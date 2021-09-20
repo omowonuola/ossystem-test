@@ -3,10 +3,6 @@ import User from '../models/userModel.js'
 import generateToken from '../utilis/generateToken.js'
 
 
-// @desc    Auth Users
-// @route   POST /api/users/login
-// @access  Private
-
 /**
  * @swagger
  * tags:
@@ -59,9 +55,36 @@ const authUser = asyncHandler(async(req, res) => {
 })
 
 
-// @desc    Register Users
-// @route   POST /api/users/
-// @access  Public
+/**
+ * @swagger
+ * /api/users/:
+ *   post:
+ *     description: User Register Route
+ *     tags: [Users Auth]
+ *     parameters:
+ *     - name: name
+ *       description: user name
+ *       in: formData
+ *       required: true
+ *       type: string
+ *     - name: email
+ *       description: email for a user
+ *       in: formData
+ *       required: true
+ *       type: string
+ *     - name: password
+ *       description: password for a user
+ *       in: formData
+ *       required: true
+ *       type: string
+ *     responses:
+ *       200:
+ *         description: Returns user info with token.
+ *       400:
+ *          description: invalid user data
+*/
+
+
 const registerUser = asyncHandler(async(req, res) => {
     const { name, email, password } = req.body
 
@@ -93,9 +116,26 @@ const registerUser = asyncHandler(async(req, res) => {
 })
 
 
-// @desc    Get User Profile
-// @route   GET /api/users/profile
-// @access  Private
+
+/**
+ * @swagger
+ * /api/users/profile:
+ *   get:
+ *     description: Get User Profile Route
+ *     tags: [Users Auth]
+ *     parameters:
+ *     - name: bearer token
+ *       description: user bearer token
+ *       in: path
+ *       required: false
+ *       type: string
+ *     responses:
+ *       200:
+ *         description: Returns user info with token.
+ *       400:
+ *          description: User not found
+*/
+
 const getUserProfile = asyncHandler(async(req, res) => {
 
     const user = await User.findById(req.user._id)
@@ -116,9 +156,41 @@ const getUserProfile = asyncHandler(async(req, res) => {
 
 
 
-// @desc    Update User Profile
-// @route   PUT /api/users/profile
-// @access  Private
+
+/**
+ * @swagger
+ * /api/users/:adminid:
+ *   put:
+ *     description: update user profile route
+ *     tags: [Users Auth]
+ *     parameters:
+ *     - name: id
+ *       description: user id
+ *       in: path
+ *       required: true
+ *       type: string
+ *     - name: name
+ *       description: user name
+ *       in: formData
+ *       required: false
+ *       type: string
+ *     - name: email
+ *       description: email for a user
+ *       in: formData
+ *       required: false
+ *       type: string
+ *     - name: password
+ *       description: password for a user
+ *       in: formData
+ *       required: false
+ *       type: string
+ *     responses:
+ *       200:
+ *         description: Returns user info with token.
+ *       400:
+ *          description: User not found
+*/
+
 const updateUserProfile = asyncHandler(async(req, res) => {
 
     const user = await User.findById(req.user._id)
@@ -145,18 +217,57 @@ const updateUserProfile = asyncHandler(async(req, res) => {
 
 })
 
-// @desc    	Get all users
-// @route   	GET /api/v1/users
-// @access  	Private/Admin
+
+/**
+ * @swagger
+ * /api/users/:
+ *   get:
+ *     description: get users route
+ *     tags: [Users Auth]
+ *     parameters:
+ *     - name: name
+ *       description: user name
+ *       in: formData
+ *       required: false
+ *       type: string
+ *     responses:
+ *       200:
+ *         description: Returns user info with token.
+ *       400:
+ *          description: User not found
+*/
+
 const getUsers = asyncHandler(async (req, res) => {
 	const users = await User.find({});
 	res.json(users);
 });
 
 
-// @desc 		Delete user
-// @route		Delete /api/v1/users/:id
-// @access  	Private/Admin
+
+/**
+ * @swagger
+ * /api/users/:id:
+ *   delete:
+ *     description: delete user profile route
+ *     tags: [Users Auth]
+ *     parameters:
+ *     - name: id
+ *       description: user id
+ *       in: path
+ *       required: true
+ *       type: string
+ *     - name: name
+ *       description: user name
+ *       in: formData
+ *       required: false
+ *       type: string
+ *     responses:
+ *       200:
+ *         description: User Removed
+ *       400:
+ *          description: User not found
+*/
+
 const deleteUsers = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.params.id);
 
@@ -169,9 +280,26 @@ const deleteUsers = asyncHandler(async (req, res) => {
 	}
 });
 
-// @desc    	Get users by Id
-// @route   	GET /api/v1/users/:id
-// @access  	Private/Admin
+
+/**
+ * @swagger
+ * /api/users/:id:
+ *   get:
+ *     description: get user profile by id route
+ *     tags: [Users Auth]
+ *     parameters:
+ *     - name: id
+ *       description: user id
+ *       in: path
+ *       required: true
+ *       type: string
+ *     responses:
+ *       200:
+ *         description: Returns user info with token.
+ *       400:
+ *          description: User not found
+*/
+
 const getUserById = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.params.id).select('-password');
 	if (user) {
@@ -182,9 +310,40 @@ const getUserById = asyncHandler(async (req, res) => {
 	}
 });
 
-// @desc    	Update user
-// @route   	PUT /api/v1/users/:id
-// @access  	Private/Admin
+/**
+ * @swagger
+ * /api/users/:id:
+ *   put:
+ *     description: update admin profile route
+ *     tags: [Users Auth]
+ *     parameters:
+ *     - name: id
+ *       description: user id
+ *       in: path
+ *       required: true
+ *       type: string
+ *     - name: name
+ *       description: admin name
+ *       in: formData
+ *       required: false
+ *       type: string
+ *     - name: email
+ *       description: email for admin
+ *       in: formData
+ *       required: false
+ *       type: string
+ *     - name: password
+ *       description: password for admin
+ *       in: formData
+ *       required: false
+ *       type: string
+ *     responses:
+ *       200:
+ *         description: Returns user info with token.
+ *       400:
+ *          description: User not found
+*/
+
 const updateUser = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.params.id);
 

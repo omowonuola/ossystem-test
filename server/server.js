@@ -21,12 +21,17 @@ app.use(express.json({limit: '50mb'}));
 
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
+// const __dirname = path.resolve();
 
+// app.use(express.static(__dirname)); //here is important thing - no static directory, because all static :)
+
+// app.get("/*", function(req, res) {
+//   res.sendFile(path.join(__dirname, "index.html"));
+// })
 
 app.use(notFound)
 app.use(errorHandler)
 
-// const __dirname = path.resolve();
 // app.use("/", express.static(path.join(__dirname, "/uploads")));
 
 const PORT = process.env.PORT || 8081
