@@ -39,10 +39,6 @@ const userInfoFromStorage = localStorage.getItem('userInfo')
 	: null;
 
 const initialState = {
-	// cart: {
-	// 	cartItems: cartItemsFromStorage,
-	// shippingAddress: shippingAddressFromStorage,
-	// },
 	userLogin: { userInfo: userInfoFromStorage },
 };
 
