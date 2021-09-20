@@ -1,6 +1,5 @@
 import express from 'express';
 import path from "path";
-import fs from "fs-extra";
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js'
@@ -27,7 +26,6 @@ app.use('/api/users', userRoutes)
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
-    console.log(('./client/build'), 'klkl')
     app.use(express.static(path.join(__dirname, "../client/build")));
     
   
@@ -44,7 +42,6 @@ if (process.env.NODE_ENV === "production") {
 // app.use(notFound)
 app.use(errorHandler)
 
-// app.use("/", express.static(path.join(__dirname, "/uploads")));
 
 const PORT = process.env.PORT || 8081
 
