@@ -36,7 +36,7 @@ const ProductScreen = ({ history, match }) => {
                                 <h3>{product.title}</h3>
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                Category: ${product.category}
+                                Category: {product.category}
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 Description: {product.description}
@@ -52,7 +52,7 @@ const ProductScreen = ({ history, match }) => {
                                             Category:
                                         </Col>
                                         <Col>
-                                            <strong>${product.category}</strong>
+                                            <strong>{product.category}</strong>
                                         </Col>
                                     </Row>
                                 </ListGroup.Item>
