@@ -12,7 +12,6 @@ const ProfileScreen = ({ location, history }) => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [confirmPassword, setConfirmPassword] = useState('');
 	const [message, setMessage] = useState(null);
 
 	const dispatch = useDispatch();
@@ -25,9 +24,6 @@ const ProfileScreen = ({ location, history }) => {
 
 	const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
 	const { success } = userUpdateProfile;
-
-	const orderListMy = useSelector((state) => state.orderListMy);
-	const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
 	useEffect(() => {
 		if (!userInfo) {
@@ -45,11 +41,7 @@ const ProfileScreen = ({ location, history }) => {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		if (password !== confirmPassword) {
-			setMessage('password do not match');
-		} else {
 			dispatch(updateUserProfile({ id: user._id, name, email, password }));
-		}
 	};
 
 	return (
@@ -88,15 +80,7 @@ const ProfileScreen = ({ location, history }) => {
 							onChange={(e) => setPassword(e.target.value)}
 						></Form.Control>
 					</Form.Group>
-					<Form.Group controlId='confirm password'>
-						<Form.Label>Confirm Password</Form.Label>
-						<Form.Control
-							type='password'
-							placeholder='Confirm password'
-							value={confirmPassword}
-							onChange={(e) => setConfirmPassword(e.target.value)}
-						></Form.Control>
-					</Form.Group>
+
 					<Button type='submit' variant='primary'>
 						Update
 					</Button>
