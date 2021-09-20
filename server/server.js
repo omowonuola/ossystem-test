@@ -1,5 +1,6 @@
 import express from 'express';
 import path from "path";
+import fs from "fs-extra";
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js'
@@ -9,6 +10,7 @@ import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+
 
 dotenv.config()
 
@@ -21,13 +23,23 @@ app.use(express.json({limit: '50mb'}));
 
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
-// const __dirname = path.resolve();
 
-// app.use(express.static(__dirname)); //here is important thing - no static directory, because all static :)
+const __dirname = path.resolve();
 
-// app.get("/*", function(req, res) {
-//   res.sendFile(path.join(__dirname, "index.html"));
-// })
+if (process.env.NODE_ENV === "production") {
+    console.log(('./client/build'), 'klkl')
+    app.use(express.static(path.join(__dirname, "../client/build")));
+    
+  
+    app.get("*", (req, res) =>
+      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+    );
+} else {
+    app.get("/", (req, res) => {
+      res.send("server is running");
+    });
+}
+
 
 // app.use(notFound)
 app.use(errorHandler)
