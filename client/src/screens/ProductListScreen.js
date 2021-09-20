@@ -17,9 +17,7 @@ const ProductListScreen = ({ history, match }) => {
 	const dispatch = useDispatch();
 
 	const productList = useSelector((state) => state.productList);
-	console.log(productList, 'fgu')
 	const { products, loading, error, page, pages } = productList;
-    console.log(products, 'KLm')
 
 	const productDelete = useSelector((state) => state.productDelete);
 	const {

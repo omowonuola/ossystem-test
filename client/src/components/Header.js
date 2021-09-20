@@ -32,11 +32,11 @@ const Header = () => {
                     <Route render={({history}) => <SearchBox history={history} />} />
 						<Nav className='ml-auto'>
 							
-							<LinkContainer to='/cart'>
+							{/* <LinkContainer to='/cart'>
 								<Nav.Link>
 									Cart <i className='fas fa-shopping-cart'></i>{' '}
 								</Nav.Link>
-							</LinkContainer>
+							</LinkContainer> */}
 							{userInfo ? (
 								<NavDropdown title={userInfo.name} id='username'>
 									<LinkContainer to='/profile'>
