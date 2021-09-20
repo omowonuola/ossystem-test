@@ -26,8 +26,8 @@ app.use('/api/users', userRoutes)
 app.use(notFound)
 app.use(errorHandler)
 
-const __dirname = path.resolve();
-app.use("/", express.static(path.join(__dirname, "/uploads")));
+// const __dirname = path.resolve();
+// app.use("/", express.static(path.join(__dirname, "/uploads")));
 
 const PORT = process.env.PORT || 8081
 

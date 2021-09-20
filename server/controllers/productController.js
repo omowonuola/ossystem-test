@@ -1,33 +1,34 @@
 import asyncHandler from 'express-async-handler'
 import Product from '../models/productModel.js'
 import cloudinary from '../utilis/cloudinary.js'
-// import upload from '../utilis/multer.js'
-
 
 // @desc 		Create a Product
 // @route 		POST /api/v1/products
 // @access 		Private/admin
 const createProduct = asyncHandler(async (req, res) => {
-    const uploadimage = await cloudinary.uploader.upload(req.file.path);
+
+	try {
+		const uploadimage = await cloudinary.v2.uploader.upload(req.file.path);
     
-    console.log(uploadimage, 'lolly')
+    	console.log(uploadimage, 'lolly')
 
-	const product = new Product({
-		title: req.body.title,
-		user: req.user._id,
-		image: uploadimage.secure_url,
-		category: req.body.category,
-		description: req.body.description,
-	});
-    console.log(product, 'killer')
-	const createdProduct = await product.save();
+		const product = new Product({
+			title: req.body.title,
+			user: req.user._id,
+			image: uploadimage.secure_url,
+			category: req.body.category,
+			description: req.body.description,
+		});
+		console.log(product, 'killer')
+		const createdProduct = await product.save();
 
-    if (createdProduct) {
-        res.status(201).json(createdProduct);
-    } else {
-        res.status(500)
+		if (createdProduct) {
+			res.status(201).json(createdProduct);
+		}
+	} catch (error) {
+		res.status(500)
         throw new Error('Product cannot be created')
-    }
+	}
 	
 });
 
@@ -49,11 +50,24 @@ const getProducts = asyncHandler(async(req, res) => {
 		  }
 		: {};
 
-	const count = await Product.countDocuments({ ...keyword });
-	const products = await Product.find({ ...keyword })
+	try {
+		const count = await Product.countDocuments({ ...keyword });
+		const products = await Product.find({ ...keyword })
+	
 		.limit(pageSize)
 		.skip(pageSize * (page - 1));
 	res.json({ products, page, pages: Math.ceil(count / pageSize) });
+	} catch (error) {
+		res.status(500)
+        throw new Error('Products not found')
+	}
+
+	// const count = await Product.countDocuments({ ...keyword });
+	
+		// .limit(pageSize)
+		// .skip(pageSize * (page - 1));
+	// res.json({ products, page, pages: Math.ceil(count / pageSize) });
+	
 })
 
 
