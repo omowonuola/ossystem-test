@@ -4,10 +4,10 @@ import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listProductDetails } from '../actions/productActions';
+import { listProductDetails } from '../actions/productAction';
 import FormContainer from '../components/FormContainer';
-import { PRODUCT_UPDATE_RESET } from './../constants/productConstants';
-import { updateProduct } from './../actions/productActions';
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstant';
+import { updateProduct } from '../actions/productAction';
 import axios from 'axios';
 
 const ProductEditScreen = ({ match, history }) => {
@@ -39,7 +39,7 @@ const ProductEditScreen = ({ match, history }) => {
 			if (!product.title || product._id !== productId) {
 				dispatch(listProductDetails(productId));
 			} else {
-				setName(product.title);
+				setTitle(product.title);
 				setImage(product.image);
 				setCategory(product.category);
 				setDescription(product.description);
@@ -104,7 +104,7 @@ const ProductEditScreen = ({ match, history }) => {
 								type='title'
 								placeholder='Enter title'
 								value={title}
-								onChange={(e) => setName(e.target.value)}
+								onChange={(e) => setTitle(e.target.value)}
 							></Form.Control>
 						</Form.Group>
 						

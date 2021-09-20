@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import Paginate from './../components/Paginate';
+import Paginate from '../components/Paginate';
 import { listProducts } from '../actions/productAction'
 // import ProductCarousel from './../components/ProductCarousel';
 import Meta from '../components/Meta';
@@ -20,7 +20,6 @@ const HomeScreen = ({ match }) => {
     const productList = useSelector(state => state.productList)
 
     const {loading, error, products, page, pages} = productList
-    console.log(products, loading, 'load')
 
     useEffect(() => {
 		dispatch(listProducts(keyword, pageNumber));
