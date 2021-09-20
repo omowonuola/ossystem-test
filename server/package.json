@@ -8,7 +8,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon --exec babel-node server.js",
-    "start": "npm run start --prefix client",
+    "start": "node server.js",
+    "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"cd .. & cd client && npm run start\"",
     "data:import": "node seeders.js",
     "data:destroy": "node server/seeder -d"
@@ -25,6 +26,7 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "fs": "0.0.1-security",
+    "fs-extra": "^10.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.6",
     "multer": "^1.4.3",

@@ -25,9 +25,9 @@ import cloudinary from '../utilis/cloudinary.js'
  *       type: string
  *     - name: image
  *       description: product image
- *       in: filePath
+ *       in: Path
  *       required: true
- *       type: string
+ *       type: file
  * 	   - name: category
  *       description: product category
  *       in: formData
