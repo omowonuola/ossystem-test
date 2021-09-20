@@ -29,7 +29,7 @@ app.use('/api/users', userRoutes)
 //   res.sendFile(path.join(__dirname, "index.html"));
 // })
 
-app.use(notFound)
+// app.use(notFound)
 app.use(errorHandler)
 
 // app.use("/", express.static(path.join(__dirname, "/uploads")));
@@ -51,7 +51,7 @@ const swaggerOptions = {
     },
 
     // 
-    apis: ['./controllers/*/*.js']
+    apis: ['./controllers/*.js']
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

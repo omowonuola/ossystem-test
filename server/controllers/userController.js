@@ -13,7 +13,7 @@ import generateToken from '../utilis/generateToken.js'
 
 /**
  * @swagger
- * /api/auth/signin:
+ * /api/users/login:
  *   post:
  *     description: Admin Login Route
  *     tags: [Users Auth]
@@ -83,7 +83,6 @@ const authUser = asyncHandler(async(req, res) => {
  *       400:
  *          description: invalid user data
 */
-
 
 const registerUser = asyncHandler(async(req, res) => {
     const { name, email, password } = req.body
