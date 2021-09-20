@@ -7,13 +7,13 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 
 const ProductScreen = ({ history, match }) => {
-    const [ qty, setQty ] = useState(0)
     
     const dispatch = useDispatch()
 
     const productDetails = useSelector(state => state.productDetails)
 
     const { loading, error, product } = productDetails
+    console.log(product, 'right')
 
     useEffect(() => {
             dispatch(listProductDetails(match.params.id))
@@ -36,7 +36,7 @@ const ProductScreen = ({ history, match }) => {
                                 <h3>{product.title}</h3>
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                Category: ${product.category}
+                                Category: {product.category}
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 Description: {product.description}
@@ -52,7 +52,7 @@ const ProductScreen = ({ history, match }) => {
                                             Category:
                                         </Col>
                                         <Col>
-                                            <strong>${product.category}</strong>
+                                            <strong>{product.category}</strong>
                                         </Col>
                                     </Row>
                                 </ListGroup.Item>

@@ -3,7 +3,6 @@ import User from '../models/userModel.js'
 import generateToken from '../utilis/generateToken.js'
 
 
-
 /**
  * @swagger
  * tags:
@@ -54,7 +53,6 @@ const authUser = asyncHandler(async(req, res) => {
     }
 
 })
-
 
 
 /**
@@ -118,7 +116,6 @@ const registerUser = asyncHandler(async(req, res) => {
 
 
 
-
 /**
  * @swagger
  * /api/users/profile:
@@ -159,7 +156,6 @@ const getUserProfile = asyncHandler(async(req, res) => {
 
 
 
-
 /**
  * @swagger
  * /api/users/:adminid:
@@ -194,7 +190,6 @@ const getUserProfile = asyncHandler(async(req, res) => {
  *          description: User not found
 */
 
-
 const updateUserProfile = asyncHandler(async(req, res) => {
 
     const user = await User.findById(req.user._id)
@@ -220,7 +215,6 @@ const updateUserProfile = asyncHandler(async(req, res) => {
     }
 
 })
-
 
 
 /**
@@ -249,7 +243,6 @@ const getUsers = asyncHandler(async (req, res) => {
 
 
 
-
 /**
  * @swagger
  * /api/users/:id:
@@ -273,7 +266,6 @@ const getUsers = asyncHandler(async (req, res) => {
  *       400:
  *          description: User not found
 */
-
 
 const deleteUsers = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.params.id);
@@ -316,9 +308,6 @@ const getUserById = asyncHandler(async (req, res) => {
 		throw new Error('User not Found');
 	}
 });
-
-
-
 
 /**
  * @swagger
