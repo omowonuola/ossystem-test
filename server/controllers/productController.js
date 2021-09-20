@@ -125,10 +125,6 @@ const getProducts = asyncHandler(async(req, res) => {
 })
 
 
-// @desc    Fetch single product
-// @route   GET /api/products/id
-// @access  Public
-
 /**
  * @swagger
  * /api/products/:id:
