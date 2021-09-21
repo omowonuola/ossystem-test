@@ -12,7 +12,8 @@
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"cd .. & cd client && npm run start\"",
     "data:import": "node seeders.js",
-    "data:destroy": "node server/seeder -d"
+    "data:destroy": "node server/seeder -d",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
