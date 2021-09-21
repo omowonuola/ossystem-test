@@ -1,22 +1,25 @@
 # ossystem-test
-Luxury Store Ecommerce Website
-An E commerce website for luxurious fast cars
+Fullstack Web Application
 
-See the live version here https://afternoon-garden-57191.herokuapp.com/
+# Luxury Store Ecommerce Website
+# An E commerce website for luxurious fast cars
 
-Versions
-v1.0
+# See the live version here https://afternoon-garden-57191.herokuapp.com/
 
-Features
+# Versions
+#v1.0
 
-Create account
-Preview a product
-Admin page for product management(create, delete and edit product and user)
-Tech Stacks
-React
-React BootStrap
-Redux
-Node
-Mongodb
-Cloudinary
-Express
+#Features
+
+#Create account
+#Preview a product
+#Admin page for product management(create, delete and edit product and user)
+
+#Tech Stacks
+#React
+#React BootStrap
+#Redux
+#Node
+#Mongodb
+#Cloudinary
+#Express
