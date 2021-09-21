@@ -55,7 +55,7 @@ const swaggerOptions = {
             contact: {
                 name: 'Os-System'
             },
-            servers: ['http://localhost:8081']
+            servers: ['https://afternoon-garden-57191.herokuapp.com']
         }
     },
 
