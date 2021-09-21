@@ -11,11 +11,12 @@ import cloudinary from '../utilis/cloudinary.js'
 */
 
 
+
 /**
  * @swagger
  * /api/products/uploads:
  *   post:
- *     description: Create Product Route
+ *     description: Create New Product Route
  *     tags: [Products]
  *     parameters:
  *     - name: title
@@ -23,36 +24,33 @@ import cloudinary from '../utilis/cloudinary.js'
  *       in: formData
  *       required: true
  *       type: string
- *     - name: image
- *       description: product image
- *       in: Path
- *       required: true
- *       type: file
- * 	   - name: category
+ *     - name: category
  *       description: product category
  *       in: formData
  *       required: true
  *       type: string
- * 	   - name: description
+ *     - name: description
  *       description: product description
  *       in: formData
  *       required: true
  *       type: string
+ *     - name: image
+ *       description: product image
+ *       in: path
+ *       required: true
+ *       type: file
  *     responses:
  *       200:
- *         description: Returns new product.
+ *         description: Returns created product details.
  *       400:
  *          description: Product cannot be created
 */
-
 
 
 const createProduct = asyncHandler(async (req, res) => {
 
 	try {
 		const uploadimage = await cloudinary.v2.uploader.upload(req.file.path);
-    
-    	console.log(uploadimage, 'lolly')
 
 		const product = new Product({
 			title: req.body.title,
