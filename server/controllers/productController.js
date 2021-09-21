@@ -55,13 +55,12 @@ const createProduct = asyncHandler(async (req, res) => {
     	console.log(uploadimage, 'lolly')
 
 		const product = new Product({
-			title: 'sample title',
+			title: req.body.title,
 			user: req.user._id,
-			image: 'https://res.cloudinary.com/omowonuola/image/upload/v1631964754/ossystem/chevrolet-car-models_dwkdte.jpg',
-			category: 'sample category',
-			description: 'sample description',
+			image: uploadimage.secure_url,
+			category: req.body.category,
+			description: req.body.description,
 		});
-		console.log(product, 'killer')
 		const createdProduct = await product.save();
 
 		if (createdProduct) {
