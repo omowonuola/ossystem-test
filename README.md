@@ -19,7 +19,9 @@ The project is fullstack ecommerce application
     $ cd ..
     $ yarn install or npm install
 
-    $ API Swagger Documentation http://localhost:8081/api-docs/#/
+## API Swagger Documentation 
+
+    $ http://localhost:8081/api-docs/#/
 
 ## Running the project
 
