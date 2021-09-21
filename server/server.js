@@ -60,7 +60,8 @@ const swaggerOptions = {
     },
 
     // 
-    apis: ['./controllers/*.js']
+    apis: [`${__dirname}/server/controllers/*.js`]
+    
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
