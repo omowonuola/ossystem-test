@@ -4,16 +4,16 @@ The project is fullstack ecommerce application
 
 ## Features
 
-$ Create account as a new user
-$ Admin management page (to manage(create, read, update and delete) products and users)
-$ Preview a product
-$ Search for products using their title
+    $ Create account as a new user
+    $ Admin management page (to manage(create, read, update and delete) products and users)
+    $ Preview a product
+    $ Search for products using their title
 
-$ See the live version here https://afternoon-garden-57191.herokuapp.com/
+    $ See the live version here https://afternoon-garden-57191.herokuapp.com/
 
 ## Install
 
-    $ git clone 
+    $ git clone https://github.com/omowonuola/ossystem-test.git
     $ cd client 
     $ yarn install or npm install
     $ cd ..
